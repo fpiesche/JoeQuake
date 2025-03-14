@@ -31,7 +31,7 @@ jobs:
           ninjaVersion: "^1.0.0"
 
       - name: Set up dependencies (Linux)
-        if: runner.os == "Linux"
+        if: runner.os == 'Linux'
         shell: bash
         run: |
           sudo apt install -y \
@@ -39,19 +39,10 @@ jobs:
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
       - name: Set up dependencies (Win/Mac)
-        if: runner.os != "Linux"
+        if: runner.os != 'Linux'
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgDirectory: ${{ github.workspace }}/thirdparty/vcpkg
-
-      # - name: Set vcpkg option
-      #   shell: bash
-      #   run: |
-      #     if [[ "${{ matrix.runner }}" != "ubuntu"* ]]; then
-      #       echo "ENABLE_VCPKG=ON" >> $GITHUB_ENV
-      #     else
-      #       echo "ENABLE_VCPKG=OFF" >> $GITHUB_ENV
-      #     fi
 
       - name: Build
         uses: lukka/run-cmake@v10
