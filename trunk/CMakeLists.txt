@@ -138,7 +138,7 @@ target_compile_definitions(joequake-gl
 )
 
 set_target_properties(joequake-gl PROPERTIES
-	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 	OUTPUT_NAME "${OUTPUT_NAME}"
 )
 

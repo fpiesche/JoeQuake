@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 13,
@@ -7,53 +7,33 @@
   },
   "configurePresets": [
     {
-      "name": "Debug",
-      "displayName": "Debug",
-      "description": "Debug build",
+      "name": "Ninja",
+      "description": "Ninja generator",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "RelWithDbgInfo",
-      "displayName": "Release with debug symbols",
-      "description": "Release with debug symbols",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDbgInfo"
-      }
-    },
-    {
-      "name": "Release",
-      "displayName": "Release",
-      "description": "Release build",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      }
+      "binaryDir": "${sourceDir}/build"
     }
   ],
   "buildPresets": [
     {
       "name": "Debug",
-      "configurePreset": "Debug"
+      "configuration": "Debug",
+      "configurePreset": "Ninja"
     },
     {
       "name": "RelWithDbgInfo",
-      "configurePreset": "RelWithDbgInfo"
+      "configuration": "RelWithDebInfo",
+      "configurePreset": "Ninja"
     },
     {
       "name": "Release",
-      "configurePreset": "Release"
+      "configuration": "Release",
+      "configurePreset": "Ninja"
     }
   ],
   "packagePresets": [
     {
       "name": "default",
+      "configurePreset": "Ninja",
       "generators": ["TGZ"]
     }
   ],
@@ -63,16 +43,16 @@
       "steps": [
         {
           "type": "configure",
-          "name": "Debug"
+          "name": "Ninja"
         },
         {
           "type": "build",
           "name": "Debug"
-        },
-        {
-          "type": "package",
-          "name": "default"
         }
+        // {
+        //   "type": "package",
+        //   "name": "default"
+        // }
       ]
     },
     {
@@ -80,16 +60,16 @@
       "steps": [
         {
           "type": "configure",
-          "name": "RelWithDbgInfo"
+          "name": "Ninja"
         },
         {
           "type": "build",
           "name": "RelWithDbgInfo"
-        },
-        {
-          "type": "package",
-          "name": "default"
         }
+        // {
+        //   "type": "package",
+        //   "name": "default"
+        // }
       ]
     },
     {
@@ -97,16 +77,16 @@
       "steps": [
         {
           "type": "configure",
-          "name": "Release"
+          "name": "Ninja"
         },
         {
           "type": "build",
           "name": "Release"
-        },
-        {
-          "type": "package",
-          "name": "default"
         }
+        // {
+        //   "type": "package",
+        //   "name": "default"
+        // }
       ]
     }
   ]
