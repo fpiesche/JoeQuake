@@ -28,11 +28,11 @@ jobs:
         run: |
           sudo apt install -y \
             ninja-build \
-            libsdl2-dev libminizip-dev libssl-dev zlib1g-dev
+            libsdl2-dev libmad0-dev libminizip-dev libssl-dev zlib1g-dev
 
       - name: Build
         run: |
           mkdir build
           cd build
-          cmake .. -G Ninja
+          cmake .. -G Ninja -DENABLE_VCPKG=OFF
           ninja
