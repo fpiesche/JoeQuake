@@ -46,6 +46,7 @@ find_package(SDL2 REQUIRED)
 find_package(zstd REQUIRED)
 find_package(minizip REQUIRED)
 find_package(mad REQUIRED)
+find_package(png REQUIRED)
 
 add_subdirectory(trunk)
 
