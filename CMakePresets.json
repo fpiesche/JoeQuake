@@ -54,7 +54,6 @@
   "packagePresets": [
     {
       "name": "default",
-      "configurePreset": "default",
       "generators": ["TGZ"]
     }
   ],
