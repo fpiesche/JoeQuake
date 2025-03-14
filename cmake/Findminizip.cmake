@@ -38,7 +38,7 @@ else()
     set(minizip_STATIC_LIBRARY_SUFFIX "\\${CMAKE_STATIC_LIBRARY_SUFFIX}$")
 endif()
 
-find_path(minizip_INCLUDE_DIR NAMES zip.h)
+find_path(minizip_INCLUDE_DIR NAMES unzip.h)
 find_library(minizip_LIBRARY NAMES minizip minizip_static)
 find_library(minizip_STATIC_LIBRARY NAMES
   minizip_static
