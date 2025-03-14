@@ -14,7 +14,7 @@ jobs:
       matrix:
         runner:
           - ubuntu-latest
-          # - windows-latest
+          - windows-latest
           # - macos-latest
           - ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
@@ -25,15 +25,26 @@ jobs:
           submodules: true
 
       - name: Install required packages
+        if: ${{ runner.os }} == "Linux"
         run: |
           sudo apt install -y \
             ninja-build \
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
+      - name: Set vcpkg option
+        shell: bash
+        run: |
+          if [[ "${{ matrix.runner }}" != "ubuntu"* ]]; then
+            echo "ENABLE_VCPKG=ON" >> $GITHUB_ENV
+          else
+            echo "ENABLE_VCPKG=OFF" >> $GITHUB_ENV
+          fi
+
       - name: Build
+        shell: bash
         run: |
           mkdir build
           cd build
-          cmake .. -G Ninja -DENABLE_VCPKG=OFF
+          cmake .. -G Ninja -DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}
           ninja
