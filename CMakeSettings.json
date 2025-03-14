@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "name": "Release",
+      "configurationType": "RelWithDebInfo",
+      "generator": "Ninja",
+      "inheritEnvironments": ["msvc_x64_x64"],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}"
+    },
+    {
+      "name": "Debug",
+      "configurationType": "Debug",
+      "generator": "Ninja",
+      "inheritEnvironments": ["msvc_x64_x64"],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}"
+    }
+  ]
+}

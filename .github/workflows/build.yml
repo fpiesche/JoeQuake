@@ -1,0 +1,27 @@
+name: Build JoeQuake
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    strategy:
+      matrix:
+        runner:
+          - ubuntu-latest
+          - windows-latest
+          # - macos-latest
+          - ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -G Ninja
+          ninja

@@ -1,0 +1,5 @@
+{
+  "name": "joequake",
+  "version-string": "0.17.9",
+  "dependencies": ["zstd", "sdl2", "minizip", "libmad", "openssl"]
+}
