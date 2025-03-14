@@ -42,11 +42,12 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 # packages
 find_package(PkgConfig QUIET)
 find_package(OpenSSL REQUIRED)
-find_package(SDL2 REQUIRED)
+# find_package(SDL2 REQUIRED)
 find_package(zstd REQUIRED)
 pkg_search_module(minizip REQUIRED minizip)
 pkg_search_module(MAD REQUIRED mad)
-pkg_search_module(PNG REQUIRED png)
+FindPNG()
+FindSDL()
 
 add_subdirectory(trunk)
 
