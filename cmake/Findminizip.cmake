@@ -8,8 +8,6 @@
 #  MINIZIP_DLL_DIR      - (Windows) Path to the minizip DLL.
 #  MINIZIP_DLL          - (Windows) Name of the minizip DLL.
 
-FindWSWinLibs("minizip-[0-9]" "MINIZIP_HINTS")
-
 if(NOT USE_REPOSITORY)
     find_package(PkgConfig QUIET)
     pkg_search_module(MINIZIP QUIET minizip)
