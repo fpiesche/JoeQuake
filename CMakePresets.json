@@ -1,0 +1,114 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 13,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "Debug",
+      "displayName": "Debug",
+      "description": "Debug build",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "RelWithDbgInfo",
+      "displayName": "Release with debug symbols",
+      "description": "Release with debug symbols",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDbgInfo"
+      }
+    },
+    {
+      "name": "Release",
+      "displayName": "Release",
+      "description": "Release build",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug",
+      "configurePreset": "Debug"
+    },
+    {
+      "name": "RelWithDbgInfo",
+      "configurePreset": "RelWithDbgInfo"
+    },
+    {
+      "name": "Release",
+      "configurePreset": "Release"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "generators": ["TGZ"]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "Debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "Debug"
+        },
+        {
+          "type": "build",
+          "name": "Debug"
+        },
+        {
+          "type": "package",
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "name": "RelWithDbgInfo",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "RelWithDbgInfo"
+        },
+        {
+          "type": "build",
+          "name": "RelWithDbgInfo"
+        },
+        {
+          "type": "package",
+          "name": "default"
+        }
+      ]
+    },
+    {
+      "name": "Release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "Release"
+        },
+        {
+          "type": "build",
+          "name": "Release"
+        },
+        {
+          "type": "package",
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}
