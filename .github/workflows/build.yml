@@ -28,7 +28,8 @@ jobs:
         run: |
           sudo apt install -y \
             ninja-build \
-            libsdl2-dev libmad0-dev libminizip-dev libssl-dev zlib1g-dev libpng-dev libjpeg-turbo8-dev
+            libminizip-dev libssl-dev zlib1g-dev \
+            libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
       - name: Build
         run: |
