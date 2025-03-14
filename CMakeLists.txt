@@ -45,7 +45,7 @@ find_package(OpenSSL REQUIRED)
 find_package(SDL2 REQUIRED)
 find_package(PNG REQUIRED)
 find_package(zstd REQUIRED)
-find_package(libjpeg-turbo REQUIRED)
+find_package(jpeg REQUIRED)
 pkg_search_module(minizip REQUIRED minizip)
 pkg_search_module(MAD REQUIRED mad)
 
