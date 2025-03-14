@@ -23,11 +23,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+
       - name: Install required packages
         run: |
           sudo apt install -y \
             ninja-build \
             libsdl2-dev libminizip-dev libssl-dev zlib1g-dev
+
       - name: Build
         run: |
           mkdir build
