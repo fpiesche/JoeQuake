@@ -24,9 +24,9 @@ jobs:
         with:
           submodules: true
       - name: Install required packages
-        run: >
-          sudo apt install -y
-            ninja-build
+        run: |
+          sudo apt install -y \
+            ninja-build \
             libsdl2-dev libminizip-dev libssl-dev zlib1g-dev
       - name: Build
         run: |
