@@ -39,14 +39,14 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 
-
 # packages
-find_package(OpenSSL REQUIRED)
-find_package(SDL2 REQUIRED)
-find_package(zstd REQUIRED)
-find_package(minizip REQUIRED)
-find_package(mad REQUIRED)
-find_package(png REQUIRED)
+find_package(PkgConfig QUIET)
+pkg_search_module(OpenSSL REQUIRED openssl)
+pkg_search_module(SDL2 REQUIRED sdl2)
+pkg_search_module(zstd REQUIRED zstd)
+pkg_search_module(minizip REQUIRED minizip)
+pkg_search_module(MAD REQUIRED mad)
+pkg_search_module(PNG REQUIRED png)
 
 add_subdirectory(trunk)
 
