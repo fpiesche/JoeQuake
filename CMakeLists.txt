@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-option(ENABLE_VCPKG "Enable the vcpkg package manager" ON)
+option(ENABLE_VCPKG "Enable the vcpkg package manager" OFF)
 set(CMAKE_C_STANDARD 99)
 
 if (ENABLE_VCPKG)
