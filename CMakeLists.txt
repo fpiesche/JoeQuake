@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
 set(CMAKE_C_STANDARD 99)
+include(CPack)
+list(APPEND CMAKE_MODULE_PATH "./cmake")
 
-project(JoeQuake VERSION 0.17.9)
+# enable link time optimization for release builds
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 
-# Set up vcpkg
 option(ENABLE_VCPKG "Enable the vcpkg package manager" ON)
+
 if (ENABLE_VCPKG)
     # check if vcpkg is shallow and unshallow it if necessary
     execute_process(
@@ -34,13 +38,7 @@ if (ENABLE_VCPKG)
     endif()
 endif()
 
-include(CPack)
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-
-# enable link time optimization for release builds
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
-
+project(JoeQuake VERSION 0.17.9)
 include(dependencies)
 include(joequake-gl)
 
