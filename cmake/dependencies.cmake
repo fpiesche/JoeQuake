@@ -1,4 +1,4 @@
-option(ENABLE_VCPKG "Enable the vcpkg package manager" OFF)
+option(ENABLE_VCPKG "Enable the vcpkg package manager" ON)
 
 if (ENABLE_VCPKG)
     # check if vcpkg is shallow and unshallow it if necessary
@@ -20,7 +20,7 @@ if (ENABLE_VCPKG)
     endif()
 
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  CACHE STRING "Vcpkg toolchain file")
+  CACHE STRING "Vcpkg toolchain file" PARENT_SCOPE)
     # Set this so that all the various find_package() calls don't need an explicit
     # CONFIG option
     set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
