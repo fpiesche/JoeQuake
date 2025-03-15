@@ -39,21 +39,32 @@ jobs:
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
-      - name: Set up dependencies (Win/Mac)
-        if: runner.os != 'Linux'
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgDirectory: ${{ github.workspace }}/thirdparty/vcpkg
-          vcpkgJsonGlob: "vcpkg.json"
-          runVcpkgInstall: true
+      - name: Configure
+        shell: bash
+        run: |
+          if [[ "${{ runner.os }}" == "Linux" ]]; then
+            export ENABLE_VCPKG=OFF
+          else
+            export ENABLE_VCPKG=ON
+          fi
+          cmake --preset Ninja -DENABLE_VCPKG=${ENABLE_VCPKG}
+          cmake --build --preset RelWithDbgInfo
 
-      - name: Build
-        uses: lukka/run-cmake@v10
-        with:
-          configurePreset: "Ninja"
-          configurePresetAdditionalArgs: "['-DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}']"
-          buildPreset: "RelWithDbgInfo"
-          # packagePreset: "default"
+      # - name: Set up dependencies (Win/Mac)
+      #   if: runner.os != 'Linux'
+      #   uses: lukka/run-vcpkg@v11
+      #   with:
+      #     vcpkgDirectory: ${{ github.workspace }}/thirdparty/vcpkg
+      #     vcpkgJsonGlob: "vcpkg.json"
+      #     runVcpkgInstall: true
+
+      # - name: Build
+      #   uses: lukka/run-cmake@v10
+      #   with:
+      #     configurePreset: "Ninja"
+      #     configurePresetAdditionalArgs: "['-DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}']"
+      #     buildPreset: "RelWithDbgInfo"
+      #     # packagePreset: "default"
 
       # - name: Create AppImage
       #   uses: AppImageCrafters/build-appimage@master
