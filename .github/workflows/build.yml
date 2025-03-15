@@ -45,7 +45,7 @@ jobs:
         with:
           vcpkgDirectory: ${{ github.workspace }}/thirdparty/vcpkg
           vcpkgJsonGlob: "vcpkg.json"
-          vcpkgInstall: true
+          runVcpkgInstall: true
 
       - name: Build
         uses: lukka/run-cmake@v10
