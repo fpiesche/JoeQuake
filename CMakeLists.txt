@@ -7,6 +7,11 @@ list(APPEND CMAKE_MODULE_PATH "./cmake")
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 
+if (APPLE)
+    # Create Universal Binary
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
+endif()
+
 option(ENABLE_VCPKG "Enable the vcpkg package manager" ON)
 
 if (ENABLE_VCPKG)

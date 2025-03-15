@@ -8,7 +8,7 @@ find_package(zstd REQUIRED)
 if (WIN32)
     find_package(unofficial-minizip CONFIG REQUIRED)
     find_package(mad CONFIG REQUIRED)
-else
+else ()
     pkg_search_module(minizip REQUIRED minizip)
     pkg_search_module(MAD REQUIRED mad)
 endif()
