@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>io.github.j0zzz.joequake</id>
+  <name>JoeQuake</name>
+  <developer id="io.github.j0zzz.joequake.contributors">
+    <name>JoeQuake contributors</name>
+    <url>https://github.com/j0zzz/JoeQuake/graphs/contributors</url>
+  </developer>
+  <summary>Speedrunning-focused Quake source port</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3</project_license>
+  <launchable type="desktop-id">io.github.j0zzz.joequake.desktop</launchable>
+  <url type="homepage">https://j0zzz.github.io/JoeQuake/</url>
+  <description>
+    <p
+        >JoeQuake is a custom Quake engine designed exclusively for speedrunning, based on
+    the official id software GLQuake source code.</p>
+    <p
+        >JoeQuake features a number of improvements over the vanilla GLQuake client, such as:</p>
+    <ul>
+        <li>Independent server-client physics</li>
+        <li>Ghost mode recording</li>
+        <li>Browsable Demos/Maps/Mods menus</li>
+        <li>Restructured, more detailed Options menu</li>
+        <li>Mouse cursor in menu</li>
+        <li>Supporting FitzQuake and RMQ protocols</li>
+        <li
+            >Supporting a wide range of custom mods (including Quake remastered)</li>
+        <li>Colored static and dynamic lighting</li>
+        <li>External texture formats (TGA/PNG/JPG)</li>
+        <li>Capturing demos to AVI file</li>
+    </ul>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image
+                type="source"
+            >https://j0zzz.github.io/JoeQuake/assets/img/screens/game-hud.jpg</image>
+      <caption>Customizable HUD elements</caption>
+    </screenshot>
+    <screenshot>
+      <image
+                type="source"
+            >https://j0zzz.github.io/JoeQuake/assets/img/screens/game-e1m3.jpg</image>
+      <caption>Hi-resolution textures and vertex lighting on monsters</caption>
+    </screenshot>
+    <screenshot>
+      <image
+                type="source"
+            >https://j0zzz.github.io/JoeQuake/assets/img/screens/game-e3m2.jpg</image>
+      <caption>Quake 3 style smoke and explosions</caption>
+    </screenshot>
+    <screenshot>
+      <image
+                type="source"
+            >https://j0zzz.github.io/JoeQuake/assets/img/screens/game-e1m1.jpg</image>
+      <caption>Blood particle effects and decals</caption>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Game</category>
+    <category>ActionGame</category>
+    <category>Shooter</category>
+  </categories>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+  <provides>
+    <binary>joequake-gl</binary>
+  </provides>
+  <keywords>
+    <keyword>quake</keyword>
+    <keyword>speedrunning</keyword>
+    <keyword>port</keyword>
+    <keyword>retro</keyword>
+  </keywords>
+  <releases>
+    <release version="0.17.9" date="2024-12-23">
+        <url>https://github.com/j0zzz/JoeQuake/releases/tag/v0.17.9</url>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1" />
+</component>

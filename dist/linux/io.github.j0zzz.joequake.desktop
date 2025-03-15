@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Game
+Comment=Quake source port targeted at speedrunning
+Exec=joequake-gl
+Icon=io.github.j0zzz.joequake
+Keywords=port;retro;quake;shooter
+Name=JoeQuake
+StartupNotify=true
+Terminal=false
+Type=Application
