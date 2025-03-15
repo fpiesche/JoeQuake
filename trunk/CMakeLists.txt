@@ -154,4 +154,5 @@ target_link_libraries(joequake-gl PRIVATE
     ogg
     mad
     SDL2::SDL2
+    SDL2::SDL2main
 )
