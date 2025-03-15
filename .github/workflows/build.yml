@@ -39,7 +39,7 @@ jobs:
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
-      - name: Set up vcpkg if needed
+      - name: Set up vcpkg parameter
         shell: bash
         run: |
           if [[ "${{ runner.os }}" == "Linux" ]]; then
@@ -58,5 +58,7 @@ jobs:
       - name: Build
         uses: lukka/run-cmake@v10
         with:
-          workflowPreset: "RelWithDbgInfo"
-          configurePresetAdditionalArgs: "['-DENABLE_VCPKG=OFF']"
+          configurePreset: "Ninja"
+          configurePresetAdditionalArgs: "['-DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}']"
+          buildPreset: "RelWithDbgInfo"
+          packagePreset: "default"
