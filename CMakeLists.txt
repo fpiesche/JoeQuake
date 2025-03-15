@@ -41,11 +41,11 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON)
 
 # packages
 find_package(PkgConfig QUIET)
-find_package(OpenSSL REQUIRED)
-find_package(SDL2 REQUIRED)
-find_package(PNG REQUIRED)
-find_package(jpeg REQUIRED)
-find_package(zstd REQUIRED)
+find_package(OpenSSL CONFIG REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(PNG CONFIG REQUIRED)
+find_package(jpeg CONFIG REQUIRED)
+find_package(zstd CONFIG REQUIRED)
 pkg_search_module(minizip REQUIRED minizip)
 pkg_search_module(MAD REQUIRED mad)
 
