@@ -10,7 +10,10 @@
       "name": "Ninja",
       "description": "Ninja generator",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build"
+      "binaryDir": "${sourceDir}/build",
+      "environment": {
+        "VCPKG_ROOT": "${sourceDir}/thirdparty/vcpkg"
+      }
     }
   ],
   "buildPresets": [
