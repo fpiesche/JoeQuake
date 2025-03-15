@@ -59,6 +59,5 @@ jobs:
         uses: lukka/run-cmake@v10
         with:
           configurePreset: "Ninja"
-          configurePresetAdditionalArgs: "['-DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}']"
           buildPreset: "RelWithDbgInfo"
-          packagePreset: "default"
+          # packagePreset: "default"

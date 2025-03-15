@@ -10,6 +10,7 @@
     "openssl",
     "libpng",
     "libjpeg-turbo",
-    "libvorbis"
+    "libvorbis",
+    "opengl"
   ]
 }
