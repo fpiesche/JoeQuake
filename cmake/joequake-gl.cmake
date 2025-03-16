@@ -75,20 +75,28 @@ set_target_properties(joequake-gl PROPERTIES
 )
 
 if(WIN32 OR APPLE)
-    target_link_libraries(joequake-gl PRIVATE unofficial::minizip::minizip)
+    target_link_libraries(joequake-gl PRIVATE
+        OpenGL::GL
+        JPEG::JPEG
+        mad::mad
+        unofficial::minizip::minizip
+        ogg:ogg
+        Vorbis::vorbis
+        Vorbis::vorbisfile)
 else()
-    target_link_libraries(joequake-gl PRIVATE minizip)
+    target_link_libraries(joequake-gl PRIVATE
+        GL
+        jpeg
+        mad
+        minizip
+        ogg
+        vorbis
+        vorbisfile)
 endif()
 
 target_link_libraries(joequake-gl PRIVATE
     PNG::PNG
-    jpeg
-    GL
     m
-    vorbisfile
-    vorbis
-    ogg
-    mad
     SDL2::SDL2
     SDL2::SDL2main
     ${CMAKE_DL_LIBS}
