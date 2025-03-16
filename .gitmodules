@@ -4,3 +4,6 @@
 [submodule "thirdparty/libmad"]
 	path = thirdparty/libmad
 	url = https://github.com/sezero/libmad
+[submodule "thirdparty/gas2masm"]
+	path = thirdparty/gas2masm
+	url = https://github.com/tyilo/gas2masm

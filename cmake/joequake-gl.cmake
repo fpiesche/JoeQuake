@@ -5,7 +5,7 @@ file(GLOB JQ_SRC CONFIGURE_DEPENDS
     "trunk/ghost/*.h"
 )
 
-file(GLOB JQ_ASM CONFIGURE_DEPENDS
+file(GLOB JQ_GASM CONFIGURE_DEPENDS
     "trunk/*.s"
 )
 
@@ -83,7 +83,11 @@ elseif (WIN32)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_common_gl.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_wgl.c)
     # add_library(quake-asm OBJECT ${JQ_ASM})
-    add_executable(joequake-gl ${JQ_SRC} ${JQ_ASM)
+    include(quake_asm)
+    file(GLOB JQ_ASM CONFIGURE_DEPENDS
+        "trunk/*.asm"
+    )
+    add_executable(joequake-gl ${JQ_SRC} ${JQ_ASM})
 endif()
 
 target_compile_definitions(joequake-gl
