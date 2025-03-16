@@ -48,6 +48,9 @@ jobs:
             export ENABLE_VCPKG=ON
           fi
           cmake --preset Ninja -DENABLE_VCPKG=${ENABLE_VCPKG}
+      - name: Build
+        shell: bash
+        run: |
           cmake --build --preset RelWithDbgInfo
 
       # - name: Set up dependencies (Win/Mac)
