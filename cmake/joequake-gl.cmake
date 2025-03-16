@@ -80,16 +80,14 @@ if(WIN32 OR APPLE)
         mad::mad
         unofficial::minizip::minizip
         ogg:ogg
-        Vorbis::vorbis
-        Vorbis::vorbisfile)
+    )
 else()
     target_link_libraries(joequake-gl PRIVATE
         jpeg
         mad
         minizip
         ogg
-        vorbis
-        vorbisfile)
+    )
 endif()
 
 target_link_libraries(joequake-gl PRIVATE
@@ -99,4 +97,6 @@ target_link_libraries(joequake-gl PRIVATE
     SDL2::SDL2
     SDL2::SDL2main
     ${CMAKE_DL_LIBS}
+    vorbis
+    vorbisfile
 )
