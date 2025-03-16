@@ -82,8 +82,6 @@ elseif (WIN32)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/nehahra.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_common_gl.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_wgl.c)
-    # add_library(quake-asm OBJECT ${JQ_ASM})
-    include(quake_asm)
     file(GLOB JQ_ASM CONFIGURE_DEPENDS
         "trunk/*.asm"
     )

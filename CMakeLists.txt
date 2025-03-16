@@ -47,6 +47,15 @@ project(JoeQuake VERSION 0.17.9 LANGUAGES C ASM)
 include(dependencies)
 include(joequake-gl)
 
+if (WIN32)
+    file(GLOB JQ_GASM CONFIGURE_DEPENDS "trunk/*.s")
+    # build gas2masm and pre-process assembly files
+    add_executable(gas2nasm thirdparty/gas2nasm/gas2nasm.c)
+    include(quake-asm)
+    add_dependencies(joequake-gl quake-asm)
+endif()
+
+
 if (UNIX AND NOT APPLE)
     install(TARGETS joequake-gl DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/)
     install(FILES "dist/linux/io.github.j0zzz.joequake.desktop" DESTINATION "${CMAKE_INSTALL_PREFIX}/share/applications")
