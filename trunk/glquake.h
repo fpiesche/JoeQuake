@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -35,6 +35,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <GL/glext.h>
 #else
 #include "fakegl.h"
+#endif
+
+// Apple Special Treatment
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
 #endif
 
 #ifndef APIENTRY
@@ -205,7 +211,7 @@ extern	cvar_t	gl_doubleeyes;
 extern	cvar_t	gl_interdist;
 extern	cvar_t	gl_interpolate_anims;
 extern	cvar_t	gl_interpolate_moves;
-extern  cvar_t  gl_waterfog;		
+extern  cvar_t  gl_waterfog;
 extern  cvar_t  gl_waterfog_density;
 extern  cvar_t  gl_detail;
 extern  cvar_t  gl_caustics;
