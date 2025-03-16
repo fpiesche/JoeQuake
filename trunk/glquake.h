@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef USEFAKEGL
     #ifdef __APPLE__
         #include <OpenGL/gl.h>
+        #include <OpenGL/gl3.h>
         #include <OpenGL/glext.h>
     #else
         #include <GL/gl.h>
