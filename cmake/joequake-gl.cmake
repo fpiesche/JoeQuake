@@ -4,140 +4,6 @@ file(GLOB JQ_SRC CONFIGURE_DEPENDS
     "trunk/ghost/*.c"
     "trunk/ghost/*.h")
 
-#     trunk/anorm_dots.h
-#     trunk/bgmusic.c
-#     trunk/bgmusic.h
-#     trunk/bspfile.h
-#     trunk/cdaudio.h
-#     trunk/cd_null.c
-#     trunk/chase.c
-#     trunk/client.h
-#     trunk/cl_demo.c
-#     trunk/cl_demoui.c
-#     trunk/cl_dzip.c
-#     trunk/cl_input.c
-#     trunk/cl_main.c
-#     trunk/cl_parse.c
-#     trunk/cl_slist.c
-#     trunk/cl_slist.h
-#     trunk/cl_tent.c
-#     trunk/cmd.c
-#     trunk/cmd.h
-#     trunk/common.c
-#     trunk/common.h
-#     trunk/console.c
-#     trunk/console.h
-#     trunk/crc.c
-#     trunk/crc.h
-#     trunk/cvar.c
-#     trunk/cvar.h
-#     trunk/draw.h
-#     trunk/glquake.h
-#     trunk/gl_decals.c
-#     trunk/gl_draw.c
-#     trunk/gl_fog.c
-#     trunk/gl_mesh.c
-#     trunk/gl_model.c
-#     trunk/gl_model.h
-#     trunk/gl_refrag.c
-#     trunk/gl_rlight.c
-#     trunk/gl_rmain.c
-#     trunk/gl_rmisc.c
-#     trunk/gl_rpart.c
-#     trunk/gl_rsurf.c
-#     trunk/gl_screen.c
-#     trunk/gl_warp.c
-#     trunk/host.c
-#     trunk/host_cmd.c
-#     trunk/image.c
-#     trunk/image.h
-#     trunk/in_sdl.c
-#     trunk/input.h
-#     trunk/iplog.c
-#     trunk/iplog.h
-#     trunk/keys.c
-#     trunk/keys.h
-#     trunk/mathlib.c
-#     trunk/mathlib.h
-#     trunk/menu.c
-#     trunk/menu.h
-#     trunk/modelgen.h
-#     trunk/nehahra.c
-#     trunk/nehahra.h
-#     trunk/net.h
-#     trunk/net_bsd.c
-#     trunk/net_dgrm.c
-#     trunk/net_dgrm.h
-#     trunk/net_loop.c
-#     trunk/net_loop.h
-#     trunk/net_main.c
-#     trunk/net_udp.c
-#     trunk/net_udp.h
-#     trunk/net_vcr.c
-#     trunk/net_vcr.h
-#     trunk/pr_cmds.c
-#     trunk/pr_comp.h
-#     trunk/pr_edict.c
-#     trunk/pr_exec.c
-#     trunk/progdefs.h
-#     trunk/progs.h
-#     trunk/protocol.h
-#     trunk/quakedef.h
-#     trunk/quake.ico
-#     trunk/render.h
-#     trunk/r_part.c
-#     trunk/sbar.c
-#     trunk/sbar.h
-#     trunk/screen.h
-#     trunk/security.c
-#     trunk/security.h
-#     trunk/server.h
-#     trunk/snd_codec.c
-#     trunk/snd_codec.h
-#     trunk/snd_codeci.h
-#     trunk/snd_dma.c
-#     trunk/snd_sdl.c
-#     trunk/snd_mem.c
-#     trunk/snd_mix.c
-#     trunk/snd_mp3.c
-#     trunk/snd_mp3.h
-#     trunk/snd_mp3tag.c
-#     trunk/snd_vorbis.c
-#     trunk/snd_vorbis.h
-#     trunk/sound.h
-#     trunk/spritegn.h
-#     trunk/sv_main.c
-#     trunk/sv_move.c
-#     trunk/sv_phys.c
-#     trunk/sv_user.c
-#     trunk/sys.h
-#     trunk/sys_linux.c
-#     trunk/version.c
-#     trunk/version.h
-#     trunk/vid.h
-#     trunk/vid_common_gl.c
-#     trunk/vid_sdl.c
-#     trunk/view.c
-#     trunk/view.h
-#     trunk/wad.c
-#     trunk/wad.h
-#     trunk/winquake.h
-#     trunk/world.c
-#     trunk/world.h
-#     trunk/zone.c
-#     trunk/zone.h
-#     trunk/demoparse.c
-#     trunk/demoparse.h
-#     trunk/demoseekparse.c
-#     trunk/democam.c
-#     trunk/ghost/ghost.c
-#     trunk/ghost/ghost.h
-#     trunk/ghost/ghost_private.h
-#     trunk/ghost/ghostparse.c
-#     trunk/ghost/demosummary.c
-#     trunk/ghost/demosummary.h
-# )
-
 if (UNIX)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/d_edge.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/d_init.c)
@@ -208,8 +74,13 @@ set_target_properties(joequake-gl PROPERTIES
  OUTPUT_NAME "${OUTPUT_NAME}"
 )
 
+if(WIN32 OR APPLE)
+    target_link_libraries(joequake-gl PRIVATE unofficial::minizip::minizip)
+else()
+    target_link_libraries(joequake-gl PRIVATE minizip)
+endif()
+
 target_link_libraries(joequake-gl PRIVATE
-    minizip
     png
     jpeg
     GL
@@ -221,4 +92,5 @@ target_link_libraries(joequake-gl PRIVATE
     mad
     SDL2::SDL2
     SDL2::SDL2main
+    ${CMAKE_DL_LIBS}
 )
