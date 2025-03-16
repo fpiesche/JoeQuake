@@ -11,6 +11,7 @@
     "libpng",
     "libjpeg-turbo",
     "libvorbis",
+    "libogg",
     "opengl"
   ]
 }

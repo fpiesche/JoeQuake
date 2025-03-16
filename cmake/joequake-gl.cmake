@@ -81,11 +81,10 @@ else()
 endif()
 
 target_link_libraries(joequake-gl PRIVATE
-    png
+    PNG::PNG
     jpeg
     GL
     m
-    dl
     vorbisfile
     vorbis
     ogg
