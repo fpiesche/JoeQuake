@@ -53,6 +53,7 @@ if (UNIX)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/sys_win.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_win.c)
 elseif (WIN32)
+    list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/cd_win.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/in_win.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/snd_win.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_win.c)
@@ -90,12 +91,18 @@ else()
     )
 endif()
 
+if(UNIX)
+    target_link_libraries(joequake-gl PRIVATE
+        SDL2::SDL2
+        SDL2::SDL2main
+    )
+endif()
+
 target_link_libraries(joequake-gl PRIVATE
     GL
     m
+    ogg
     PNG::PNG
-    SDL2::SDL2
-    SDL2::SDL2main
     ${CMAKE_DL_LIBS}
     vorbis
     vorbisfile
