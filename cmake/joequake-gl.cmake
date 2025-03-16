@@ -82,7 +82,8 @@ elseif (WIN32)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/nehahra.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_common_gl.c)
     list(REMOVE_ITEM JQ_SRC ${CMAKE_CURRENT_SOURCE_DIR}/trunk/vid_wgl.c)
-    add_executable(joequake-gl ${JQ_SRC} ${JQ_ASM})
+    # add_library(quake-asm OBJECT ${JQ_ASM})
+    add_executable(joequake-gl ${JQ_SRC} ${JQ_ASM)
 endif()
 
 target_compile_definitions(joequake-gl

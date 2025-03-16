@@ -43,7 +43,7 @@ if (ENABLE_VCPKG)
     endif()
 endif()
 
-project(JoeQuake VERSION 0.17.9)
+project(JoeQuake VERSION 0.17.9 LANGUAGES C ASM)
 include(dependencies)
 include(joequake-gl)
 
