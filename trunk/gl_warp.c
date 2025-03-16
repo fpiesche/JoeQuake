@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -19,7 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // gl_warp.c -- sky and water polygons
 
+#ifndef __APPLE__
 #include <malloc.h>
+#endif
 #include "quakedef.h"
 
 extern	model_t	*loadmodel;
@@ -31,7 +33,7 @@ static	float	speedscale, speedscale2;	// for top sky and bottom sky
 static	msurface_t *warpface;
 
 qboolean	r_skyboxloaded;
-float		skyfog; // ericw 
+float		skyfog; // ericw
 
 int			gl_warpimagesize;
 
@@ -229,14 +231,14 @@ void GL_SubdivideSurface(msurface_t *fa)
 
 int turbsin[TURBSINSIZE] =
 {
-	127, 133, 139, 146, 152, 158, 164, 170, 176, 182, 187, 193, 198, 203, 208, 213, 
-	217, 221, 226, 229, 233, 236, 239, 242, 245, 247, 249, 251, 252, 253, 254, 254, 
-	255, 254, 254, 253, 252, 251, 249, 247, 245, 242, 239, 236, 233, 229, 226, 221, 
-	217, 213, 208, 203, 198, 193, 187, 182, 176, 170, 164, 158, 152, 146, 139, 133, 
-	127, 121, 115, 108, 102, 96, 90, 84, 78, 72, 67, 61, 56, 51, 46, 41, 
-	37, 33, 28, 25, 21, 18, 15, 12, 9, 7, 5, 3, 2, 1, 0, 0, 
-	0, 0, 0, 1, 2, 3, 5, 7, 9, 12, 15, 18, 21, 25, 28, 33, 
-	37, 41, 46, 51, 56, 61, 67, 72, 78, 84, 90, 96, 102, 108, 115, 121, 
+	127, 133, 139, 146, 152, 158, 164, 170, 176, 182, 187, 193, 198, 203, 208, 213,
+	217, 221, 226, 229, 233, 236, 239, 242, 245, 247, 249, 251, 252, 253, 254, 254,
+	255, 254, 254, 253, 252, 251, 249, 247, 245, 242, 239, 236, 233, 229, 226, 221,
+	217, 213, 208, 203, 198, 193, 187, 182, 176, 170, 164, 158, 152, 146, 139, 133,
+	127, 121, 115, 108, 102, 96, 90, 84, 78, 72, 67, 61, 56, 51, 46, 41,
+	37, 33, 28, 25, 21, 18, 15, 12, 9, 7, 5, 3, 2, 1, 0, 0,
+	0, 0, 0, 1, 2, 3, 5, 7, 9, 12, 15, 18, 21, 25, 28, 33,
+	37, 41, 46, 51, 56, 61, 67, 72, 78, 84, 90, 96, 102, 108, 115, 121,
 };
 
 __inline static float SINTABLE_APPROX (float time)
@@ -618,7 +620,7 @@ void ClipSkyPolygon (int nump, vec3_t vecs, int stage)
 	if (!front || !back)
 	{	// not clipped
 		ClipSkyPolygon (nump, vecs, stage+1);
-		if (on_heap) 
+		if (on_heap)
 		{
 			free(dists);
 			free(sides);
@@ -706,11 +708,11 @@ void Sky_ProcessPoly(glpoly_t *p)
 			alloca(max_clip_verts * sizeof(vec3_t)));
 		int i = 0;
 
-		for ( ; i < num_verts; i++) 
+		for ( ; i < num_verts; i++)
 			VectorSubtract(p->verts[i], r_origin, verts[i]);
 		ClipSkyPolygon (num_verts, verts[0], 0);
 
-		if (on_heap) 
+		if (on_heap)
 			free(verts);
 	}
 }
@@ -1226,7 +1228,7 @@ called once per frame before drawing anything else
 void R_DrawSky(void)
 {
 	byte	*col;
-	
+
 	// reset sky bounds
 	R_ClearSkyBox();
 
