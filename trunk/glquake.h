@@ -31,17 +31,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // FAKEGL - switch include files
 #ifndef USEFAKEGL
-#include <GL/gl.h>
-#include <GL/glext.h>
+    #ifdef __APPLE__
+        #include <OpenGL/gl.h>
+        #include <OpenGL/glext.h>
+    #else
+        #include <GL/gl.h>
+        #include <GL/glext.h>
+    #endif
 #else
-#include "fakegl.h"
+    #include "fakegl.h"
 #endif
 
 // Apple Special Treatment
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#include <OpenGL/glext.h>
-#endif
 
 #ifndef APIENTRY
 #define APIENTRY
