@@ -80,14 +80,12 @@ if(WIN32 OR APPLE)
         JPEG::JPEG
         mad::mad
         unofficial::minizip::minizip
-        ogg:ogg
     )
 else()
     target_link_libraries(joequake-gl PRIVATE
         jpeg
         mad
         minizip
-        ogg
     )
 endif()
 
