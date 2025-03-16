@@ -14,63 +14,29 @@
       "environment": {
         "VCPKG_ROOT": "${sourceDir}/thirdparty/vcpkg"
       }
-    },
-    {
-      "name": "Debug",
-      "inherits": "Ninja",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "Debug"
-        }
-      }
-    },
-    {
-      "name": "RelWithDbgInfo",
-      "inherits": "Ninja",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "RelWithDbgInfo"
-        }
-      }
-    },
-    {
-      "name": "Release",
-      "inherits": "Ninja",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "Release"
-        }
-      }
     }
   ],
   "buildPresets": [
     {
       "name": "Debug",
-      "configurePreset": "Debug"
+      "configuration": "Debug",
+      "configurePreset": "Ninja"
     },
     {
       "name": "RelWithDbgInfo",
-      "configurePreset": "RelWithDbgInfo"
+      "configuration": "RelWithDebInfo",
+      "configurePreset": "Ninja"
     },
     {
       "name": "Release",
-      "configurePreset": "RelWithDbgInfo"
+      "configuration": "Release",
+      "configurePreset": "Ninja"
     }
   ],
   "packagePresets": [
     {
-      "name": "Release",
+      "name": "default",
       "configurePreset": "Ninja",
-      "buildPreset": "Release",
-      "generators": ["TGZ"]
-    },
-    {
-      "name": "RelWithDbgInfo",
-      "configurePreset": "Ninja",
-      "buildPreset": "RelWithDbgInfo",
       "generators": ["TGZ"]
     }
   ],
@@ -80,11 +46,15 @@
       "steps": [
         {
           "type": "configure",
-          "name": "Debug"
+          "name": "Ninja"
         },
         {
           "type": "build",
           "name": "Debug"
+        },
+        {
+          "type": "package",
+          "name": "default"
         }
       ]
     },
@@ -93,7 +63,7 @@
       "steps": [
         {
           "type": "configure",
-          "name": "RelWithDbgInfo"
+          "name": "Ninja"
         },
         {
           "type": "build",
@@ -101,7 +71,7 @@
         },
         {
           "type": "package",
-          "name": "RelWithDbgInfo"
+          "name": "default"
         }
       ]
     },
@@ -110,7 +80,7 @@
       "steps": [
         {
           "type": "configure",
-          "name": "Release"
+          "name": "Ninja"
         },
         {
           "type": "build",
@@ -118,7 +88,7 @@
         },
         {
           "type": "package",
-          "name": "Release"
+          "name": "default"
         }
       ]
     }
