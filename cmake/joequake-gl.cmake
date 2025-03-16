@@ -84,7 +84,7 @@ if(WIN32)
     )
 elseif(APPLE)
     target_link_libraries(joequake-gl PRIVATE
-        OpenGL::GL
+        ${OPENGL_LIBARIES}
         JPEG::JPEG
         mad::mad
         unofficial::minizip::minizip
