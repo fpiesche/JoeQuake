@@ -101,7 +101,9 @@ if(WIN32)
         JPEG::JPEG
         mad::mad
         unofficial::minizip::minizip
-        ogg
+        Ogg::ogg
+        Vorbis::vorbis
+        Vorbis::vorbisfile
     )
 elseif(APPLE)
     target_link_libraries(joequake-gl PRIVATE
@@ -110,6 +112,8 @@ elseif(APPLE)
         mad::mad
         unofficial::minizip::minizip
         Ogg::ogg
+        Vorbis::vorbis
+        Vorbis::vorbisfile
     )
 else()
     target_link_libraries(joequake-gl PRIVATE
@@ -118,6 +122,8 @@ else()
         mad
         minizip
         ogg
+        vorbis
+        vorbisfile
     )
 endif()
 
@@ -127,6 +133,4 @@ target_link_libraries(joequake-gl PRIVATE
     PNG::PNG
     SDL2::SDL2
     SDL2::SDL2main
-    vorbis
-    vorbisfile
 )
