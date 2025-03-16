@@ -100,6 +100,7 @@ if(WIN32)
         JPEG::JPEG
         mad::mad
         unofficial::minizip::minizip
+        ogg
     )
 elseif(APPLE)
     target_link_libraries(joequake-gl PRIVATE
@@ -107,6 +108,7 @@ elseif(APPLE)
         JPEG::JPEG
         mad::mad
         unofficial::minizip::minizip
+        Ogg::ogg
     )
 else()
     target_link_libraries(joequake-gl PRIVATE
@@ -114,13 +116,13 @@ else()
         jpeg
         mad
         minizip
+        ogg
     )
 endif()
 
 target_link_libraries(joequake-gl PRIVATE
     ${CMAKE_DL_LIBS}
     m
-    ogg
     PNG::PNG
     SDL2::SDL2
     SDL2::SDL2main
