@@ -8,15 +8,13 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Build
+  linux:
+    name: Linux build
     strategy:
       fail-fast: false
       matrix:
         runner:
           - ubuntu-latest
-          - windows-latest
-          # - macos-latest
           - ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
     steps:
@@ -39,35 +37,13 @@ jobs:
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
-      # - name: Configure
-      #   shell: bash
-      #   run: |
-      #     if [[ "${{ runner.os }}" == "Linux" ]]; then
-      #       export ENABLE_VCPKG=OFF
-      #     else
-      #       export ENABLE_VCPKG=ON
-      #     fi
-      #     cmake --preset Ninja -DENABLE_VCPKG=${ENABLE_VCPKG}
-      # - name: Build
-      #   shell: bash
-      #   run: |
-      #     cmake --build --preset RelWithDbgInfo
-
-      - name: Set up dependencies (Win/Mac)
-        if: runner.os != 'Linux'
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgDirectory: ${{ github.workspace }}/thirdparty/vcpkg
-          vcpkgJsonGlob: "vcpkg.json"
-          runVcpkgInstall: true
-
-      - name: Build
-        uses: lukka/run-cmake@v10
-        with:
-          configurePreset: "Ninja"
-          configurePresetAdditionalArgs: "['-DENABLE_VCPKG=${{ env.ENABLE_VCPKG }}']"
-          buildPreset: "RelWithDbgInfo"
-          # packagePreset: "default"
+      - name: Build Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          cmake --preset Ninja -DENABLE_VCPKG=${ENABLE_VCPKG} --prefix=./AppDir
+          cmake --build --preset RelWithDbgInfo
+          cmake --install
 
       # - name: Create AppImage
       #   uses: AppImageCrafters/build-appimage@master
@@ -75,3 +51,24 @@ jobs:
       #     recipe: dist/linux/AppImageBuilder.yml
       #   env:
       #     UPDATE_INFO: gh-releases-zsync|${{ github.repository_owner }}|${{ github.repository }}|latest|*.AppImage.zsync
+
+  windows:
+    name: Windows build
+    runs-on: windows-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install cmake and Ninja
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: "^3.0.0"
+          ninjaVersion: "^1.0.0"
+
+      - name: Build
+        shell: bash
+        run: |
+          cmake -G "Visual Studio 17 2022" -A Win32 -DENABLE_VCPKG=ON -B "build32"
+          cmake --build build32 --config RelWithDbgInfo
