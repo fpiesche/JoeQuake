@@ -37,11 +37,10 @@ jobs:
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
-      - name: Build Linux
-        if: runner.os == 'Linux'
+      - name: Build
         shell: bash
         run: |
-          cmake --preset Ninja -DENABLE_VCPKG=${ENABLE_VCPKG} --prefix=./AppDir
+          cmake --preset Ninja -DENABLE_VCPKG=OFF --prefix=./AppDir
           cmake --build --preset RelWithDbgInfo
           cmake --install
 
