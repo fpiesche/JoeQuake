@@ -40,9 +40,9 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake --preset Ninja -DENABLE_VCPKG=OFF --prefix=./AppDir
+          cmake --preset Ninja -DENABLE_VCPKG=OFF
           cmake --build --preset RelWithDbgInfo
-          cmake --install
+          cmake --install build --prefix=./AppDir
 
       # - name: Create AppImage
       #   uses: AppImageCrafters/build-appimage@master
@@ -54,6 +54,8 @@ jobs:
   windows:
     name: Windows build
     runs-on: windows-latest
+    env:
+      VCPKG_TARGET_ARCHITECTURE: x86
     steps:
       - name: Check out code
         uses: actions/checkout@v4
