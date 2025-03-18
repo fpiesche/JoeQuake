@@ -33,16 +33,16 @@ jobs:
         if: runner.os == 'Linux'
         shell: bash
         run: |
-          sudo apt install -y \
+          sudo apt update && sudo apt install -y \
             libminizip-dev libssl-dev zlib1g-dev \
             libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
 
       - name: Build
         shell: bash
         run: |
-          cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/AppDir
+          cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/build/AppDir
           cmake --build --preset RelWithDbgInfo
-          cmake --install build --prefix=./AppDir
+          cmake --install build --prefix=./build/AppDir
 
       # - name: Create AppImage
       #   uses: AppImageCrafters/build-appimage@master
