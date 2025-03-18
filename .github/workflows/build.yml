@@ -74,5 +74,5 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -G "Visual Studio 17 2022" -A Win32 -DENABLE_VCPKG=ON -B "build32"
+          cmake -G "Visual Studio 17 2022" -A Win32 -DENABLE_VCPKG=ON -DVCPKG_TARGET_ARCHITECTURE=x86 -B "build32"
           cmake --build build32 --config RelWithDbgInfo
