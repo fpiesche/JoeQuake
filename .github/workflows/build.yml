@@ -40,16 +40,23 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/build/AppDir
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/latest/linuxdeploy-$(uname -m).AppImage -O linuxdeploy.AppImage
+          chmod a+x linuxdeploy.AppImage
+          ./linuxdeploy.AppImage --appdir ./build/AppDir
+          cmake --preset Ninja -DENABLE_VCPKG=OFF
           cmake --build --preset RelWithDbgInfo
-          cmake --install build --prefix=./build/AppDir
+          cmake --install build
 
-      # - name: Create AppImage
-      #   uses: AppImageCrafters/build-appimage@master
-      #   with:
-      #     recipe: dist/linux/AppImageBuilder.yml
-      #   env:
-      #     UPDATE_INFO: gh-releases-zsync|${{ github.repository_owner }}|${{ github.repository }}|latest|*.AppImage.zsync
+      - name: Build AppImage
+        shell: bash
+        run: |
+          ./linuxdeploy.AppImage --appdir build/AppDir -d "$GITHUB_WORKSPACE"/dist/linux/io.github.j0zzz.joequake.desktop  -e "$GITHUB_WORKSPACE"/build/bin/joequake-gl -i "$GITHUB_WORKSPACE"/dist/linux/io.github.j0zzz.joequake.png --output appimage
+
+      - name: Store AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: joequake-appimage
+          path: "*.AppImage"
 
   windows:
     name: Windows build
