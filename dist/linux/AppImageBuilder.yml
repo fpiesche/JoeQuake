@@ -1,0 +1,36 @@
+script:
+  - cd "$BUILD_DIR"
+  - git clone https://github.com/fpiesche/JoeQuake
+  - cd JoeQuake
+  - apt install -y libminizip-dev libssl-dev zlib1g-dev libsdl2-dev libmad0-dev libpng-dev libjpeg-turbo8-dev libvorbis-dev
+  - cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/build/AppDir
+  - cmake --build --preset RelWithDbgInfo
+  - cmake --install build --prefix=./build/AppDir
+
+apt:
+  include:
+    - libminizip
+    - libssl
+    - zlib1g
+    - libsdl2
+    - libmad0
+    - libpng
+    - libjpeg-turbo8
+    - libvorbis
+
+app_info:
+  id: io.github.j0zzz.joequake
+  name: JoeQuake
+  icon: io.github.j0zzz.joequake
+  version: 0.17.9
+  exec: bin/joequake-gl
+  exec_args: $@
+
+AppDir:
+  runtime:
+    arch: [x86_64, i386]
+    version: continuous
+
+AppImage:
+  arch: "{{TARGET_ARCH}}"
+  file_name: "io.github.j0zzz.joequake-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage"

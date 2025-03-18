@@ -8,6 +8,31 @@ on:
   pull_request:
 
 jobs:
+  linux-appimage:
+    name: AppImage
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build AppImage
+        uses: AppImageCrafters/build-appimage@master
+        with:
+          recipe: "dist/linux/AppImageBuilder.yml"
+        env:
+          UPDATE_INFO: gh-releases-zsync|j0zzz|joequake-1|latest|*AppImage.zsync
+      - name: Store AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          path: *.AppImage
+
   linux:
     name: Linux build
     strategy:
@@ -40,23 +65,9 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/latest/linuxdeploy-$(uname -m).AppImage -O linuxdeploy.AppImage
-          chmod a+x linuxdeploy.AppImage
-          ./linuxdeploy.AppImage --appdir ./build/AppDir
-          cmake --preset Ninja -DENABLE_VCPKG=OFF
+          cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/build/AppDir
           cmake --build --preset RelWithDbgInfo
-          cmake --install build
-
-      - name: Build AppImage
-        shell: bash
-        run: |
-          ./linuxdeploy.AppImage --appdir build/AppDir -d "$GITHUB_WORKSPACE"/dist/linux/io.github.j0zzz.joequake.desktop  -e "$GITHUB_WORKSPACE"/build/bin/joequake-gl -i "$GITHUB_WORKSPACE"/dist/linux/io.github.j0zzz.joequake.png --output appimage
-
-      - name: Store AppImage
-        uses: actions/upload-artifact@v4
-        with:
-          name: joequake-appimage
-          path: "*.AppImage"
+          cmake --install build --prefix=./build/AppDir
 
   windows:
     name: Windows build
