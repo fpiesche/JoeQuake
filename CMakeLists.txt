@@ -43,14 +43,12 @@ if (ENABLE_VCPKG)
     endif()
 endif()
 
-project(JoeQuake VERSION 0.17.9 LANGUAGES C ASM)
+project(JoeQuake VERSION 0.17.9 LANGUAGES C ASM ASM_MASM)
 include(dependencies)
 include(joequake-gl)
 
 if (WIN32)
     file(GLOB JQ_GASM CONFIGURE_DEPENDS "trunk/*.s")
-    # build gas2masm and pre-process assembly files
-    add_executable(gas2nasm thirdparty/gas2nasm/gas2nasm.c)
     include(quake-asm)
     add_dependencies(joequake-gl quake-asm)
 endif()
