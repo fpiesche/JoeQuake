@@ -39,7 +39,7 @@ if (ENABLE_VCPKG)
     # CONFIG option
     set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
     if (WIN32)
-        set(VCPKG_TARGET_TRIPLET "x64-windows-static" CACHE STRING "")
+        set(VCPKG_TARGET_TRIPLET "x86-windows-static" CACHE STRING "")
     endif()
 endif()
 
