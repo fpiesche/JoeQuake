@@ -1,7 +1,7 @@
 version: 1
 AppDir:
   runtime:
-    arch: [x86_64, aarch64]
+    arch: "{{ TARGET_ARCH }}"
     version: continuous
   app_info:
     id: io.github.j0zzz.joequake
@@ -47,8 +47,8 @@ AppDir:
 
 AppImage:
   arch: "{{TARGET_ARCH}}"
-  file_name: "io.github.j0zzz.joequake-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage"
-  update-information: "guess"
+  file_name: "io.github.j0zzz.joequake-{{APP_VERSION}}_{{TIMESTAMP}}-{{TARGET_ARCH}}.AppImage"
+  update-information: "gh-releases-zsync|j0zzz|joequake-1|latest|*AppImage.zsync"
 
 script:
   - cd "$BUILD_DIR"
