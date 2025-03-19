@@ -1,3 +1,55 @@
+version: 1
+AppDir:
+  runtime:
+    arch: [x86_64, aarch64]
+    version: continuous
+  app_info:
+    id: io.github.j0zzz.joequake
+    name: JoeQuake
+    icon: io.github.j0zzz.joequake
+    version: 0.17.9
+    exec: bin/joequake-gl
+    exec_args: $@
+
+  apt:
+    arch: []
+    allow_unauthenticated: true
+    sources:
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic main restricted
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic universe
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic-updates universe
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic multiverse
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ bionic-updates multiverse
+      - sourceline:
+          deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted
+          universe multiverse
+      - sourceline: deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted
+      - sourceline: deb http://security.ubuntu.com/ubuntu/ bionic-security universe
+      - sourceline: deb http://security.ubuntu.com/ubuntu/ bionic-security multiverse
+    include:
+      - libminizip
+      - libssl
+      - zlib1g
+      - libsdl2
+      - libmad0
+      - libpng
+      - libjpeg-turbo8
+      - libvorbis
+  files:
+    include: []
+    exclude:
+      - usr/share/man
+      - usr/share/doc/*/README.*
+      - usr/share/doc/*/changelog.*
+      - usr/share/doc/*/NEWS.*
+      - usr/share/doc/*/TODO.*
+
+AppImage:
+  arch: "{{TARGET_ARCH}}"
+  file_name: "io.github.j0zzz.joequake-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage"
+  update-information: "guess"
+
 script:
   - cd "$BUILD_DIR"
   - git clone https://github.com/fpiesche/JoeQuake
@@ -6,31 +58,3 @@ script:
   - cmake --preset Ninja -DENABLE_VCPKG=OFF --install-prefix=$(pwd)/build/AppDir
   - cmake --build --preset RelWithDbgInfo
   - cmake --install build --prefix=./build/AppDir
-
-apt:
-  include:
-    - libminizip
-    - libssl
-    - zlib1g
-    - libsdl2
-    - libmad0
-    - libpng
-    - libjpeg-turbo8
-    - libvorbis
-
-app_info:
-  id: io.github.j0zzz.joequake
-  name: JoeQuake
-  icon: io.github.j0zzz.joequake
-  version: 0.17.9
-  exec: bin/joequake-gl
-  exec_args: $@
-
-AppDir:
-  runtime:
-    arch: [x86_64, i386]
-    version: continuous
-
-AppImage:
-  arch: "{{TARGET_ARCH}}"
-  file_name: "io.github.j0zzz.joequake-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage"
