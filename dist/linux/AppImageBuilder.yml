@@ -1,7 +1,8 @@
 version: 1
 AppDir:
   runtime:
-    arch: "{{ TARGET_ARCH }}"
+    arch:
+      - "{{ TARGET_ARCH }}"
     version: continuous
   app_info:
     id: io.github.j0zzz.joequake
