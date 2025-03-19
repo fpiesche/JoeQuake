@@ -42,15 +42,15 @@ if (ENABLE_VCPKG)
         set(VCPKG_TARGET_TRIPLET "x86-windows-static" CACHE STRING "")
     endif()
 endif()
+if (WIN32)
+    list(APPEND CMAKE_MODULE_PATH ".\cmake")
+    file(GLOB JQ_GASM CONFIGURE_DEPENDS "trunk\*.s")
+    include(quake-asm)
+endif()
 
 project(JoeQuake VERSION 0.17.9 LANGUAGES C ASM ASM_MASM)
 include(dependencies)
 include(joequake-gl)
-
-if (WIN32)
-    file(GLOB JQ_GASM CONFIGURE_DEPENDS "trunk/*.s")
-    include(quake-asm)
-endif()
 
 
 if (UNIX AND NOT APPLE)
